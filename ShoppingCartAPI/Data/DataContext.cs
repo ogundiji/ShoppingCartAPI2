@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ShoppingCartAPI.Models;
+using System.Reflection.Metadata;
 
 namespace ShoppingCartAPI.Data
 {
@@ -13,5 +14,11 @@ namespace ShoppingCartAPI.Data
         public DbSet<Category> Categories { get; set; }
         public DbSet<ProductCategory> ProductCategory { get; set; }
 
+        protected override void OnModelCreating (ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Product>()
+            .Property(o => o.price)
+            .HasColumnType("decimal(18,4)");
+        }
     }
 }

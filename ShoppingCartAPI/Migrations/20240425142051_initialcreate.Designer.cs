@@ -12,7 +12,7 @@ using ShoppingCartAPI.Data;
 namespace ShoppingCartAPI.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240422093908_initialcreate")]
+    [Migration("20240425142051_initialcreate")]
     partial class initialcreate
     {
         /// <inheritdoc />
