@@ -1,12 +1,25 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using ShoppingCartAPI.Data;
 using ShoppingCartAPI.Interface;
+using ShoppingCartAPI.Models;
 using ShoppingCartAPI.Repository;
-using ShoppingCartAPI.Interface;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+builder.Services.AddIdentity<User, IdentityRole>(opt =>
+{
+    opt.Password.RequiredLength = 7;
+    opt.Password.RequireDigit = true;
+    opt.Password.RequireUppercase = true;
+    opt.Password.RequireLowercase = true;
+    opt.Password.RequireNonAlphanumeric = true;
+    opt.User.RequireUniqueEmail = true;
+})
+ .AddEntityFrameworkStores<DataContext>()
+ .AddDefaultTokenProviders();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
